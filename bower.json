@@ -1,0 +1,14 @@
+{
+  "name": "scrum master",
+  "description": "Scrum master",
+  "version": "0.0.0",
+  "homepage": "",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-route": "~1.4.0",
+    "jquery":"^3",
+    "html5-boilerplate": "~5.2.0"
+  }
+}

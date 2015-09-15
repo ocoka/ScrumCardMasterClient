@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SCRUM CARD MASTER</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body ng-app="Scrummer">
+
+  <div class="load" ng-show="loading">
+      <div class="load__block">
+          <span class="load__text" ng-bind="loadingMessage">loading</span>
+      </div>
+  </div>
+  <div ng-view></div>
+
+  <scrpit src="lib/jquery/dist/jquery.js"></scrpit>
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="lib/koaws.js"></script>
+  <script src="app.js"></script>
+  <script src="Login/control.js"></script>
+  <script src="Round/control.js"></script>
+
+</body>
+</html>

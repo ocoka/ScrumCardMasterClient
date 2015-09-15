@@ -1,0 +1,6 @@
+<form ng-submit="ctl.doLogin()">
+    <input type="text" name="playerName" ng-model="ctl.playerName" placeholder="Ваше имя тут"/>
+    <input type="password" name="playerName" ng-model="ctl.password" placeholder="Ваш пароль"/>
+    <input type="submit" name="register" value="Войти"/>
+    <div style="color:red">{{ctl.errors}}</div>
+</form>
