@@ -9,14 +9,12 @@ angular.module('Scrummer', [
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: 'login'});
 }]).service('$ko',['$q',function koService($q){
-        this.done=$q(function (res,rej){
-            koaws.register('session', function (err, payload) {
-                if (err) console.error('Something went wrong', err);
-                console.log("Session here");
-                console.log(payload);
-                res(payload);
-            });
-            koaws.connect('ws://127.0.0.1:3000');
+        this.ready=$q(function (res,rej){
+                koaws.register('session', function (err, payload) {
+                    if (err) console.error('Something went wrong', err);
+                    res(payload);
+                });
+                koaws.connect('ws://127.0.0.1:3000');
         });
 
 
