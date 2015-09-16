@@ -9,9 +9,9 @@ angular.module('Scrummer.Round', ['ngRoute'])
         });
     }])
     .controller('ctrRound', ['$scope','$ko',function($scope,$ko) {
-        $ko.done.then(
+        $ko.ready.then(
             function(data){
-                $scope.$emit("l0ad.stop");
+                $scope.$emit("l0ad.start","waiting for round to begin");
             }
         );
     }]);

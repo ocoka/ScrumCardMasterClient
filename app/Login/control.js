@@ -18,7 +18,7 @@ angular.module('Scrummer.Login', ['ngRoute'])
             if (result.data.result!='success'){
               _this.errors=result.data.errors;
             }else{
-                $scope.$emit("l0ad.start",'waiting for round to start');
+                $scope.$emit("l0ad.start",'waiting for server to accept protocol');
               $l.path("/round");
             }
           },
