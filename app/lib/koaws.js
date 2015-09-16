@@ -46,14 +46,7 @@
     };
 
     function Protocol(socket, data) {
-        // If heartbeat, respond
-        if (data === '--thump--') {
-            debug('← Thump!');
-            setTimeout(function () {
-                socket.send('--thump--');
-            }.bind(this), this._options.heartbeatInterval || 5000);
-            return;
-        }
+
 
 
         // Try to parse data to JSON
@@ -195,7 +188,16 @@
     };
 
     Client.prototype.onMessage = function (type,e) {
-        Protocol.apply(this, [this.socket, e.data]);
+        // If heartbeat, respond
+        if (e.data === '--thump--') {
+            debug('← Thump!');
+            setTimeout(function () {
+                this.socket.send('--thump--');
+            }.bind(this), this._options.heartbeatInterval || 5000);
+            return;
+        }else {
+            Protocol.apply(this, [this.socket, e.data]);
+        }
     };
 
     Client.prototype.connect = function (address) {
