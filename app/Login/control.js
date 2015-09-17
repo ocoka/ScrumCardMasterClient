@@ -7,6 +7,7 @@ angular.module('Scrummer.Login', ['ngRoute'])
   });
 }])
 .controller('ctrLogin',["$scope","$http","$location",function($scope,$http,$l) {
+
   this.playerName="";
   this.password="";
   this.errors=null;
@@ -28,4 +29,5 @@ angular.module('Scrummer.Login', ['ngRoute'])
       )
     }
   }
+    $scope.$emit("l0ad.stop");
 }]);

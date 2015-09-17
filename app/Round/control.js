@@ -8,10 +8,14 @@ angular.module('Scrummer.Round', ['ngRoute'])
             controller: 'ctrRound'
         });
     }])
-    .controller('ctrRound', ['$scope','$ko',function($scope,$ko) {
+    .controller('ctrRound', ['$scope','$ko',"$location",function($scope,$ko,$l) {
         $ko.ready.then(
             function(data){
                 $scope.$emit("l0ad.start","waiting for round to begin");
+            },
+            function(data){
+                $scope.$emit("l0ad.start","access denied");
+                $l.path("/login");
             }
         );
     }]);

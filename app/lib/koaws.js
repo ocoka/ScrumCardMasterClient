@@ -194,7 +194,6 @@
             setTimeout(function () {
                 this.socket.send('--thump--');
             }.bind(this), this._options.heartbeatInterval || 5000);
-            return;
         }else {
             Protocol.apply(this, [this.socket, e.data]);
         }
@@ -289,4 +288,4 @@
     window.koaws = new Client();
 
 
-}).call(this,console.debug.bind(console));
+}).call(this,/*console.debug.bind(console)*/function(){});

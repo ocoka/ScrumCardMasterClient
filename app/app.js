@@ -14,6 +14,9 @@ config(['$routeProvider', function($routeProvider) {
                     if (err) console.error('Something went wrong', err);
                     res(payload);
                 });
+                koaws.onClose=function(type,e){
+                    rej(e);
+                };
                 koaws.connect('ws://127.0.0.1:3000');
         });
 
