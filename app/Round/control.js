@@ -16,7 +16,7 @@ angular.module('Scrummer.Round', ['ngRoute'])
                 return $ko.stat();
             },
             function(data){
-                var err={msg:"err: the server dismiss a connection",showLogin:true};
+                var err={err:"the server dismiss a connection",showLogin:true};
                 $scope.$emit("l0ad.start",err);
                 throw Error(err.msg);
             }
@@ -25,7 +25,7 @@ angular.module('Scrummer.Round', ['ngRoute'])
                 $root.players=data.players;
             }
             else{
-                $scope.$emit("l0ad.start",{msg:"err: got incorrect data from server",showLogin:true});
+                $scope.$emit("l0ad.start",{err:"got incorrect data from server",showLogin:true});
             }
         });
     }]);

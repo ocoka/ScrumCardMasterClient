@@ -5,21 +5,32 @@
   <title>SCRUM CARD MASTER</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/normalize.css">
-  <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:400,100,300|Exo+2:400,600,500,400italic,100,200,100italic,200italic,300,300italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="/lib/components-font-awesome/css/font-awesome.css">
 </head>
 <body ng-app="Scrummer">
 
-  <div class="load" ng-show="loading">
-      <div class="aux_info">
-          <div class="players_info">
-              <p class="player" ng-repeat="p in players track by p.player">{{p.player}}:{{p.role}}</p>
+  <div class="screen-load" ng-show="loading">
+      <div class="head-info">
+          <div class="players-info">
+              <h3 class="players-header"> Connected players:</h3>
+              <ul class="players-list">
+                  <li ng-repeat="player in players track by player.name" class="player" ng-class="player.role">{{player.name}}</li>
+              </ul>
+
           </div>
       </div>
-      <div class="load__block">
-          <span class="load__text" ng-bind="loadingMessage">loading</span>
+      <div class="center-info">
+          <div class="message-block">
+            <p ng-hide="errMessage" ng-bind="message">loading</p>
+            <p class="loadtext_err ng-hide" ng-show="errMessage" ng-bind="errMessage"></p>
+          </div>
+          <p class="links">
+          <a class="ng-hide login-link" ng-show="showLogin" href="/#/login" title="Вход в систему">Вход в систему</a>
+          </p>
       </div>
+
   </div>
   <div ng-view></div>
 

@@ -38,6 +38,9 @@ config(['$routeProvider', function($routeProvider) {
     }])
     .run(["$rootScope","$q","$http",function($rootScope,$q,$http){
         function scrummerRouteChangeListener(e,data){
+            $rootScope.message='loading';
+            $rootScope.errMessage=null;
+            $rootScope.showLogin=false;
             switch (e.name) {
                 case 'l0ad.start':
                     $rootScope.loading=true;
@@ -49,7 +52,8 @@ config(['$routeProvider', function($routeProvider) {
                     break;
             }
             if (data!=null){
-                $rootScope.loadingMessage=data.msg;
+                $rootScope.message=data.msg;
+                $rootScope.errMessage=data.err;
                 $rootScope.showLogin=!!data.showLogin;
             }
 
