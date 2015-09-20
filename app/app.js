@@ -9,16 +9,18 @@ angular.module('Scrummer', [
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: 'login'});
 }]).service('$ko',['$q',function koService($q){
-        this.ready=$q(function (res,rej){
+        this.register=function koRegister() {
+            return $q(function (res, rej) {
                 koaws.register('session', function (err, payload) {
                     if (err) console.error('Something went wrong', err);
                     res(payload);
                 });
-                koaws.onClose=function(type,e){
+                koaws.onClose = function (type, e) {
                     rej(e);
                 };
                 koaws.connect('ws://127.0.0.1:3000');
-        });
+            });
+        }
 
 
         function KoaWSMethod(name,param){
@@ -35,7 +37,7 @@ config(['$routeProvider', function($routeProvider) {
 
     }])
     .run(["$rootScope","$q","$http",function($rootScope,$q,$http){
-        function scrummerRouteChangeListener(e,message){
+        function scrummerRouteChangeListener(e,data){
             switch (e.name) {
                 case 'l0ad.start':
                     $rootScope.loading=true;
@@ -46,8 +48,9 @@ config(['$routeProvider', function($routeProvider) {
                 default:
                     break;
             }
-            if (message!=null){
-                $rootScope.loadingMessage=message;
+            if (data!=null){
+                $rootScope.loadingMessage=data.msg;
+                $rootScope.showLogin=!!data.showLogin;
             }
 
         }

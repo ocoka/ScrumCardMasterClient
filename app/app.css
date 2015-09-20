@@ -46,11 +46,11 @@ html,body {
     box-shadow: 0 0 49px 2px #C34747;
     background-color: #000;
     opacity: 0.8;
-    animation-duration: 1200ms;
+    /*animation-duration: 1200ms;
     animation-iteration-count: infinite;
-    animation-name: hbeat;
+    animation-name: hbeat;*/
 }
-.load__text:after {
+/*.load__text:after {
     animation-duration: 1200ms;
     animation-iteration-count: infinite;
     animation-name: hbeat_after;
@@ -62,7 +62,7 @@ html,body {
     right: 0;
     text-align: left;
 
-}
+}*/
 @keyframes hbeat {
     0% {
         box-shadow: 0 0 49px 2px #C34747;

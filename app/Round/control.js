@@ -8,14 +8,24 @@ angular.module('Scrummer.Round', ['ngRoute'])
             controller: 'ctrRound'
         });
     }])
-    .controller('ctrRound', ['$scope','$ko',"$location",function($scope,$ko,$l) {
-        $ko.ready.then(
+    .controller('ctrRound', ['$scope','$ko',"$location","$rootScope",function($scope,$ko,$l,$root) {
+
+        $ko.register().then(
             function(data){
-                $scope.$emit("l0ad.start","waiting for round to begin");
+                $scope.$emit("l0ad.start",{msg:"...waiting for round start...",showLogin:false});
+                return $ko.stat();
             },
             function(data){
-                $scope.$emit("l0ad.start","access denied");
-                $l.path("/login");
+                var err={msg:"err: the server dismiss a connection",showLogin:true};
+                $scope.$emit("l0ad.start",err);
+                throw Error(err.msg);
             }
-        );
+        ).then(function(data){
+            if (data.players!=null){
+                $root.players=data.players;
+            }
+            else{
+                $scope.$emit("l0ad.start",{msg:"err: got incorrect data from server",showLogin:true});
+            }
+        });
     }]);

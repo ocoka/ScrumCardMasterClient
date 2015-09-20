@@ -12,6 +12,11 @@
 <body ng-app="Scrummer">
 
   <div class="load" ng-show="loading">
+      <div class="aux_info">
+          <div class="players_info">
+              <p class="player" ng-repeat="p in players track by p.player">{{p.player}}:{{p.role}}</p>
+          </div>
+      </div>
       <div class="load__block">
           <span class="load__text" ng-bind="loadingMessage">loading</span>
       </div>
