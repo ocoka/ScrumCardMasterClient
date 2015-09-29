@@ -2,9 +2,9 @@
 
 // Declare app level module which depends on views, and components
 angular.module('Scrummer', [
-  'ngRoute',
-  'Scrummer.Login',
-  'Scrummer.Round'
+    'ngRoute',
+    'Scrummer.Login',
+    'Scrummer.Round'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: 'login'});

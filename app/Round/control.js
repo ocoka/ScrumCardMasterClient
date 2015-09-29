@@ -21,8 +21,8 @@ angular.module('Scrummer.Round', ['ngRoute'])
                 throw Error(err.msg);
             }
         ).then(function(data){
-            if (data.players!=null){
-                $root.players=data.players;
+            if (data!=null){
+                $root.players=data;
             }
             else{
                 $scope.$emit("l0ad.start",{err:"got incorrect data from server",showLogin:true});

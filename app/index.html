@@ -16,7 +16,7 @@
           <div class="players-info">
               <h3 class="players-header"> Connected players:</h3>
               <ul class="players-list">
-                  <li ng-repeat="player in players track by player.name" class="player" ng-class="player.role">{{player.name}}</li>
+                  <li ng-repeat="(player,role) in players" class="player" ng-class="role">{{player}}</li>
               </ul>
 
           </div>
