@@ -9,23 +9,29 @@ angular.module('Scrummer', [
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: 'login'});
 }]).service('$ko',['$q',function koService($q){
+        var registrationPromise=null;
+
         this.register=function koRegister() {
-            return $q(function (res, rej) {
-                koaws.register('session', function (err, payload) {
-                    if (err) console.error('Something went wrong', err);
-                    res(payload);
+            if (registrationPromise==null) {
+                registrationPromise=$q(function (res, rej) {
+                    koaws.register('session', function () {
+                        res(this.params);
+                    });
+                    koaws.onClose = function (type, e) {
+                        registrationPromise=null;
+                        rej(e);
+                    };
+                    koaws.connect('ws://127.0.0.1:3000');
                 });
-                koaws.onClose = function (type, e) {
-                    rej(e);
-                };
-                koaws.connect('ws://127.0.0.1:3000');
-            });
-        }
+            }
+            return registrationPromise;
+
+        };
 
 
         function KoaWSMethod(name,param){
             return $q(function(res,rej){
-                koaws.method(name, function (err, result) {
+                koaws.method(name, param,function (err,result) {
                     if (err) {rej(err);}
                     else{
                         res(result);
@@ -33,7 +39,32 @@ config(['$routeProvider', function($routeProvider) {
                 });
             });
         }
+
+        var eventHandlers={};
+        function functionHandlerIterator(){
+            var _this=this;
+            eventHandlers[this.method].forEach(function(el){
+                el.apply(_this);
+            });
+        }
+
+        function registerEventHandler(event,handler){
+            if (eventHandlers[event]==null){
+                koaws.register(event,functionHandlerIterator)
+                eventHandlers[event]=[];
+            }
+            eventHandlers[event].push(handler);
+        }
+        this.on=registerEventHandler;
+        this.off=function(event){
+            delete eventHandlers[event];
+            eventHandlers[event]=[];
+        };
+
         this.stat=KoaWSMethod.bind(this,'stat');
+        this.disconnect=function(){
+            koaws.disconnect(1000);
+        }
 
     }])
     .run(["$rootScope","$q","$http",function($rootScope,$q,$http){

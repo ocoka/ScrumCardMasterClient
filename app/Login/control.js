@@ -6,12 +6,13 @@ angular.module('Scrummer.Login', ['ngRoute'])
     controller: 'ctrLogin as ctl'
   });
 }])
-.controller('ctrLogin',["$scope","$http","$location",function($scope,$http,$l) {
+.controller('ctrLogin',["$scope","$http","$location",'$ko',function($scope,$http,$l,$ko) {
 
   this.playerName="";
   this.password="";
   this.errors=null;
   var _this=this;
+    $ko.disconnect();
   this.doLogin=function doLogin(){
     if (this.playerName.length>0){
       $http.post("/back/login",{playerName:this.playerName,password:this.password}).then(
@@ -24,7 +25,7 @@ angular.module('Scrummer.Login', ['ngRoute'])
             }
           },
           function(data){
-            console.warn(data);
+              _this.errors="Server unavailable";
           }
       )
     }

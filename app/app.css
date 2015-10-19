@@ -72,101 +72,6 @@
     clear: both;
 }
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
-}
-
-@media print,
-(-webkit-min-device-pixel-ratio: 1.25),
-(min-resolution: 1.25dppx),
-(min-resolution: 120dpi) {
-    /* Style adjustments for high resolution devices */
-}
-
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   http://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
-
-@media print {
-    *,
-    *:before,
-    *:after {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster:
-                                   http://www.sanbeiji.com/archives/953 */
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
-
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
-
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-
-    /*
-     * Don't show links that are fragment identifiers,
-     * or use the `javascript:` pseudo protocol
-     */
-
-    a[href^="#"]:after,
-    a[href^="javascript:"]:after {
-        content: "";
-    }
-
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-
-    /*
-     * Printing Tables:
-     * http://css-discuss.incutio.com/wiki/Printing_Tables
-     */
-
-    thead {
-        display: table-header-group;
-    }
-
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
-
-    img {
-        max-width: 100% !important;
-    }
-
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
-
-    h2,
-    h3 {
-        page-break-after: avoid;
-    }
-}
-
-
 /* app css stylesheet */
 body{
     background:
@@ -180,7 +85,7 @@ body{
     background-size: 20px 20px;
 }
 html,body {
-    font-size:2vw;
+    font-size:12pt;
     height:100%;
     width:100%;
     margin:0;
@@ -210,8 +115,13 @@ body * {
     justify-content: flex-start;
     align-items: center;
     align-content: flex-start;
-    height:100%;
-    color:white;
+    height: 100%;
+    color: white;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0) 7%,rgb(0, 0, 0) 29%);
 }
 .head-info {
     order:1;
@@ -251,21 +161,38 @@ body * {
 }
 
 .players-info {
-    margin: 1em 0 0 4em;
     background-color: black;
-    padding: 0 1em 1em 1em;
     border-radius: 5px;
+    flex: 0 0 100%;
+    display:flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
 }
 
 .players-header {
-    padding: 0.4em 1em;
-    margin-left: -4em;
     background-color: black;
     border-radius: 5px;
     color: #E2A14F;
+    flex: 0 1 auto;
 }
 .players-list {
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex: 1 1 100px;
+    overflow-y: hidden;
+    overflow-x: auto;
     list-style-type: none;
+}
+.player {
+    flex:0 0 auto;
+    margin: 0 5px;
 }
 .player::before{
     content: "\f183";
@@ -279,4 +206,85 @@ body * {
 
 .links {
     flex: 0 0 auto;
+}
+/*ROUND SCREEN*/
+[ng-view] {
+    height:100%;
+}
+.round-screen {
+    display:flex;
+    height:100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+}
+.round-screen__head {
+    flex: 1 1 100px;
+    color:white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+}
+.round-screen__body {
+    flex:1 0 300px;
+    border:1px solid #371918;
+    display:flex;
+    flex-flow:row wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding: 1ex 1em;
+    perspective: 800px;
+    perspective-origin: 50% 20%;
+}
+.card {
+    flex: 0 0 96px;
+    border: 1px solid #440A2F;
+    transform: rotateY(0deg);
+    background-color: black;
+    position: relative;
+    transform-style: preserve-3d;
+    height: 128px;
+    backface-visibility: visible;
+}
+.card:before {
+    content:"";
+    /*position: absolute;*/
+    /*top:0;*/
+    /*left:0;*/
+    height: 100%;
+    width: 100%;
+    display: block;
+    background-image: radial-gradient(ellipse at 50%,black 41%,#2F0C2F 100%);
+}
+.card__front {
+    position: absolute;
+    top:0;
+    left:0;
+    height: 100%;
+    width: 100%;
+    font-size: 27pt;
+    text-align: center;
+    color: white;
+    font-weight: 900;
+    line-height: 128px;
+    transform: translateZ(-2px) rotateY(180deg);
+    backface-visibility: hidden;
+    visibility: hidden;
+    text-shadow: -2px -3px 13px #D221AC;
+}
+.card.open {
+    transform: rotateY(180deg);
+    transition: transform 1s ease-out;
+}
+.card.open .card__front {
+    visibility: visible;
+}
+.round-screen__foot {
+    flex:1 1 100px;
 }

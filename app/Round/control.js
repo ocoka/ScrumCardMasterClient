@@ -8,24 +8,36 @@ angular.module('Scrummer.Round', ['ngRoute'])
             controller: 'ctrRound'
         });
     }])
-    .controller('ctrRound', ['$scope','$ko',"$location","$rootScope",function($scope,$ko,$l,$root) {
+    .controller('ctrRound', ['$scope','$ko',"$location","$rootScope",function($scope,$ko,$l) {
+
+        $ko.on('stat',function(){
+            $scope.players=this.params;
+            $scope.$apply();
+        });
+        $scope.$on("$destroy",function(){
+            $ko.off('stat');
+        });
 
         $ko.register().then(
             function(data){
-                $scope.$emit("l0ad.start",{msg:"...waiting for round start...",showLogin:false});
+                if (data.role=='player'){
+                    $scope.$emit("l0ad.start",{msg:"...waiting for round start...",showLogin:false});
+                }else{
+                    $scope.$emit("l0ad.stop");
+                }
                 return $ko.stat();
             },
             function(data){
-                var err={err:"the server dismiss a connection",showLogin:true};
+                var err={msg:"the server dismiss a connection",showLogin:true};
                 $scope.$emit("l0ad.start",err);
                 throw Error(err.msg);
             }
         ).then(function(data){
             if (data!=null){
-                $root.players=data;
+                $scope.players=data;
             }
             else{
-                $scope.$emit("l0ad.start",{err:"got incorrect data from server",showLogin:true});
+                $scope.$emit("l0ad.start",{msg:"got incorrect data from server",showLogin:true});
             }
         });
     }]);

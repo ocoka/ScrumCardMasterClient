@@ -261,6 +261,8 @@
             }
         } else if (typeof arguments[1] === 'function') {
             cb = arguments[1];
+        } else if (typeof arguments[2] === 'function') {
+            cb = arguments[2];
         }
 
         if (cb) {
@@ -288,4 +290,4 @@
     window.koaws = new Client();
 
 
-}).call(this,/*console.debug.bind(console)*/function(){});
+}).call(this,console.debug.bind(console));

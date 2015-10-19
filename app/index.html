@@ -11,28 +11,23 @@
 </head>
 <body ng-app="Scrummer">
 
+
+  <div ng-view></div>
   <div class="screen-load" ng-show="loading">
       <div class="head-info">
-          <div class="players-info">
-              <h3 class="players-header"> Connected players:</h3>
-              <ul class="players-list">
-                  <li ng-repeat="(player,role) in players" class="player" ng-class="role">{{player}}</li>
-              </ul>
 
-          </div>
       </div>
       <div class="center-info">
           <div class="message-block">
-            <p ng-hide="errMessage" ng-bind="message">loading</p>
-            <p class="loadtext_err ng-hide" ng-show="errMessage" ng-bind="errMessage"></p>
+              <p ng-hide="errMessage" ng-bind="message">loading</p>
+              <p class="loadtext_err ng-hide" ng-show="errMessage" ng-bind="errMessage"></p>
           </div>
           <p class="links">
-          <a class="ng-hide login-link" ng-show="showLogin" href="/#/login" title="Вход в систему">Вход в систему</a>
+              <a class="ng-hide login-link" ng-show="showLogin" href="/#/login" title="Вход в систему">Вход в систему</a>
           </p>
       </div>
 
   </div>
-  <div ng-view></div>
 
   <scrpit src="lib/jquery/dist/jquery.js"></scrpit>
   <script src="lib/angular/angular.js"></script>
