@@ -4,32 +4,23 @@
 angular.module('Scrummer', [
     'ngRoute',
     'Scrummer.Login',
-    'Scrummer.Round'
+    "Scrummer.Round",
+    'OUtils'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: 'login'});
-}]).service('$ko',['$q',function koService($q){
-        var registrationPromise=null;
-
-        this.register=function koRegister() {
-            if (registrationPromise==null) {
-                registrationPromise=$q(function (res, rej) {
-                    koaws.register('session', function () {
-                        res(this.params);
-                    });
-                    koaws.onClose = function (type, e) {
-                        registrationPromise=null;
-                        rej(e);
-                    };
-                    koaws.connect('ws://127.0.0.1:3000');
-                });
-            }
-            return registrationPromise;
-
+}]).service('$ko',['$q','$rootScope',function koService($q,$root){
+        var koaws=window.koaws;
+        koaws.onClose=function KoaWSOnClose(){
+        connected=false;
         };
-
+        var connected=false;
 
         function KoaWSMethod(name,param){
+          if (!connected) {
+            koaws.connect(window.location.hostname+':3000');
+            connected=true;
+          }
             return $q(function(res,rej){
                 koaws.method(name, param,function (err,result) {
                     if (err) {rej(err);}
@@ -61,38 +52,32 @@ config(['$routeProvider', function($routeProvider) {
             eventHandlers[event]=[];
         };
 
-        this.stat=KoaWSMethod.bind(this,'stat');
+        this.method=KoaWSMethod;
         this.disconnect=function(){
             koaws.disconnect(1000);
-        }
+        };
 
     }])
-    .run(["$rootScope","$q","$http",function($rootScope,$q,$http){
-        function scrummerRouteChangeListener(e,data){
-            $rootScope.message='loading';
-            $rootScope.errMessage=null;
-            $rootScope.showLogin=false;
+    .run(["$rootScope",function($rootScope){
+      $rootScope.shutter=false;
+      $rootScope.shutterMessage={text:'...Loading...',isError:false};
+        function shutterStatusListener(e,data){
             switch (e.name) {
-                case 'l0ad.start':
-                    $rootScope.loading=true;
-                    break;
-                case 'l0ad.stop':
-                    $rootScope.loading=false;
-                    break;
+                case 'shutter.on':
+                  $rootScope.shutter=true;
+                  break;
+                case 'shutter.off':
+                  $rootScope.shutter=false;
+                  break;
                 default:
                     break;
             }
             if (data!=null){
-                $rootScope.message=data.msg;
-                $rootScope.errMessage=data.err;
-                $rootScope.showLogin=!!data.showLogin;
+              angular.extend($rootScope.shutterMessage,data);
             }
-
         }
-        $rootScope.$on("l0ad.start",scrummerRouteChangeListener);
-        $rootScope.$on("l0ad.stop",scrummerRouteChangeListener);
-            window.$q=$q;
-            window.$http=$http;
+        $rootScope.$on("shutter.on",shutterStatusListener);
+        $rootScope.$on("shutter.off",shutterStatusListener);
 }]
 
 );

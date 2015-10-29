@@ -11,28 +11,17 @@
 </head>
 <body ng-app="Scrummer">
 
-
   <div ng-view></div>
-  <div class="screen-load" ng-show="loading">
-      <div class="head-info">
-
+  <div class="shutter ng-hide" ng-show="shutter">
+      <div class="shutter__message" ng-class="shutterMessage.isError?'shutter__message_error':''" ng-bind="shutterMessage.text">
       </div>
-      <div class="center-info">
-          <div class="message-block">
-              <p ng-hide="errMessage" ng-bind="message">loading</p>
-              <p class="loadtext_err ng-hide" ng-show="errMessage" ng-bind="errMessage"></p>
-          </div>
-          <p class="links">
-              <a class="ng-hide login-link" ng-show="showLogin" href="/#/login" title="Вход в систему">Вход в систему</a>
-          </p>
-      </div>
-
   </div>
 
-  <scrpit src="lib/jquery/dist/jquery.js"></scrpit>
+  <script src="lib/jquery/dist/jquery.js"></script>
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular-route/angular-route.js"></script>
   <script src="lib/koaws.js"></script>
+  <script src="lib/utils.js"></script>
   <script src="app.js"></script>
   <script src="Login/control.js"></script>
   <script src="Round/control.js"></script>
