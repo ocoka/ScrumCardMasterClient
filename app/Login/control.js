@@ -1,3 +1,5 @@
+/*global angular*/
+
 'use strict';
 angular.module('Scrummer.Login', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
@@ -9,22 +11,26 @@ angular.module('Scrummer.Login', ['ngRoute'])
 .controller('ctrLogin',["$scope","$http","$location",'$ko',function($scope,$http,$l,$ko) {
   $scope.registration={
     playerName:"",
-    password:"",
-    errors:""
+    playerPass:""
   };
+  $scope.errors={};
   var _this=this;
     $ko.disconnect();
-  this.doLogin=function doLogin(){
+  this.doLogin=function doLogin(setValidationAs){
+    $scope.errors={};
     $http.post("/back/login",$scope.registration).then(
           function(result){
             if (result.data.result!='success'){
-              $scope.registration.errors=result.data.errors;
+                Object.keys(result.data.errors).forEach(function(el){
+                  setValidationAs(el,false);
+                });
+                $scope.errors=result.data.errors;
             }else{
               $l.path("/round");
             }
           },
-          function(data){
-              $scope.errors=["Server unavailable"];
+          function(){
+              $scope.errors={internal:"Server unavailable"};
           }
       )
     }

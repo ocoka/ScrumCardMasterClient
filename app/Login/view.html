@@ -1,27 +1,30 @@
-<form class="login form" o-validateon="load input:300 blur">
-  <div class="form-group">
-    <div class="form-group__col right">
-    <label for="name" class="login__label form-label">Enter your player name:</label>
+
+<link rel="stylesheet" href="Login/view.css"/>
+<form o-validateon="input:300 load blur" ng-submit="ctl.doLogin(setValidationAs)" class="form">
+  <div class="form__group group">
+    <div class="group__left">
+      <label for="playerName" class="group__label">Введите ваше имя
+      </label>
+    </div>
+    <div ng-class="!validated.playerName.$pristine && (validated.playerName.$all===false && 'error'||validated.playerName.$all===true && 'success')" class="group__right">
+      <input type="text" id="playerName" name="playerName" o-validate="req username" maxlength="20" ng-model="registration.playerName" class="group__input"/>
+    </div>
   </div>
-  <div class="form-group__col" ng-class="!validated.playerName.$pristine && (validated.playerName.$all===false && 'error'||validated.playerName.$all===true && 'success')">
-    <input type="text" id="playerName" name="playerName" class="login__input form-input" o-validate="req username" maxlength="20" ng-model="registration.plyerName"/>
+  <div class="form__group group">
+    <div class="group__left">
+      <label for="playerPass" class="group__label">Введите пароль
+      </label>
+    </div>
+    <div ng-class="!validated.playerPass.$pristine && (validated.playerPass.$all===false && 'error'||validated.playerPass.$all===true && 'success')" class="group__right">
+      <input type="password" id="playerPass" name="playerPass" o-validate="req passauth" maxlength="20" ng-model="registration.playerPass" class="group__input group__input_pass"/>
+    </div>
   </div>
-</div>
+  <div ng-repeat="(errorSrc,errorText) in errors" class="error form__error"><i class="fa fa-exclamation-triangle"></i><span class="error__message">{{errorText}}</span>
   </div>
-  <div class="form-group" >
-    <div class="form-group__col right">
-    <label for="pass" class="login__label form-label">Give a password:</label>
-  </div>
-  <div class="form-group__col" ng-class="!validated.pass.$pristine && (validated.pass.$all===false && 'error'||validated.pass.$all===true && 'success')">
-    <input type="password" id="pass" name="pass" class="login__input form-input" o-validate="req passauth" ng-model="registration.pass"/>
-  </div>
-  </div>
-  <div class="form-group right">
-    <div class="form-group__col">
-    <button ng-disabled="!validated.$all" type="submit" class="login__button form-button">
-      <i class="fa fa-spinner fa-spin"/>
-      <span>Login</span>
-    </button>
+  <div class="form__group group group_left-empty">
+    <div class="group__right">
+      <button ng-disabled="!validated.$all" class="group__button"><i ng-show="validated.$submitted" class="fa fa-spinner fa-spin ng-hide"></i><span>Отправить</span>
+      </button>
     </div>
   </div>
 </form>

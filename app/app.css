@@ -113,108 +113,6 @@ body a:hover {
   width:100%;
 }
 
-.form {
-  display:flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: stretch;
-  align-content: stretch;
-  width: 100%;
-  height:100%;
-}
-.form-group {
-  flex:0 0 auto;
-  display:flex;
-  flex-flow:row wrap;
-  justify-content:center;
-  align-items: center;
-  align-content: stretch;
-  margin:1.6rem 0.5rem;
-  width:auto;
-}
-.form-group.right:before {
-  flex:1 1 0;
-  content:"";
-  display:block;
-  min-width: 12rem;
-
-}
-.form-group__col{
-  flex:1 1 0;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-  align-content: stretch;
-  min-width: 12rem;
-}
-.form-group__col.right{
-  align-items: flex-end;
-}
-.form-label {
-  padding: 0 0.5rem 0.5em 0;
-}
-.form-input {
-  font-size: 1.2rem;
-  background-color: black;
-  background-image: linear-gradient(to bottom, black 0%,#1D1D1D 66%);
-  border: 1px solid #4E4848;
-  color: #9CA088;
-  padding: 0.5rem 1.5rem;
-  border-radius: 5px;
-  width: 100%;
-  max-width: 20rem;
-}
-.form-button {
-	-moz-box-shadow:inset 0px 1px 0px 0px #a6827e;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #a6827e;
-	box-shadow:inset 0px 1px 0px 0px #a6827e;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7d5d3b), color-stop(1, #634b30));
-	background:-moz-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
-	background:-webkit-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
-	background:-o-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
-	background:-ms-linear-gradient(top, #7d5d3b 5%, #634b30 100%);
-	background:linear-gradient(to bottom, #7d5d3b 5%, #634b30 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d5d3b', endColorstr='#634b30',GradientType=0);
-	background-color:#7d5d3b;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
-	border:1px solid #54381e;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	padding: 0.5rem 1.5rem;
-	text-decoration:none;
-  font-size: 1.2rem;
-	text-shadow:0px 1px 0px #4d3534;
-}
-.form-button:hover {
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #634b30), color-stop(1, #7d5d3b));
-	background:-moz-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
-	background:-webkit-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
-	background:-o-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
-	background:-ms-linear-gradient(top, #634b30 5%, #7d5d3b 100%);
-	background:linear-gradient(to bottom, #634b30 5%, #7d5d3b 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#634b30', endColorstr='#7d5d3b',GradientType=0);
-	background-color:#634b30;
-}
-.form-button:active {
-	position:relative;
-	top:1px;
-}
-
-.success>.form-input,.success.form-input {
-  box-shadow: #1E901E 0 0 4px 1px;
-}
-.error>.form-input,.error.form-input {
-  box-shadow: #BB1E1E 0 0 4px 1px;
-}
-
-.form-button>i {
-  margin-left:-1rem;
-}
-
 .shutter__message {
     color:white;
 }
@@ -230,49 +128,6 @@ body a:hover {
     color:black;
 }
 
-.players-info {
-    background-color: black;
-    border-radius: 5px;
-    flex: 0 0 100%;
-    display:flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    align-content: stretch;
-}
-
-.players-header {
-    background-color: black;
-    border-radius: 5px;
-    color: #E2A14F;
-    flex: 0 1 auto;
-}
-.players-list {
-    display:flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
-    flex: 1 1 100px;
-    overflow-y: hidden;
-    overflow-x: auto;
-    list-style-type: none;
-}
-.player {
-    flex:0 0 auto;
-    margin: 0 5px;
-}
-.player::before{
-    content: "\f183";
-    display:inline;
-    font-family: FontAwesome;
-    padding-right: 1.2em;
-}
-.master{
-    color:red;
-}
 
 /*ROUND SCREEN*/
 
@@ -318,15 +173,4 @@ body a:hover {
 }
 .card.open .card__front {
     visibility: visible;
-}
-
-@media screen and (max-width:400px) {
-  .form-group__col,.form-group__col.right{
-    align-items: center;
-  }
-
-  .form-group.right:before {
-    display:none;
-  }
-
 }

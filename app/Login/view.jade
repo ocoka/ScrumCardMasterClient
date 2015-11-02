@@ -1,0 +1,26 @@
+//output:view.html
+//{playerName:'Введите ваше имя',playerPass:'Введите пароль'}
+include ../bemto/bemto
+include ../Shared/validator-wrapper
+
+link(rel="stylesheet",href="Login/view.css")
+
++b.FORM.form(o-validateon='input:300 load blur',ng-submit='ctl.doLogin(setValidationAs)')
+  +b.group.__group
+    +e.left
+      +e.label(for='playerName') #{playerName}
+    +e-validol('playerName').right
+      +e.input(type="text",id="playerName",name="playerName",o-validate="req username",maxlength="20",ng-model="registration.playerName")
+  +b.group.__group
+    +e.left
+      +e.label(for='playerPass') #{playerPass}
+    +e-validol('playerPass').right
+      +e.input_pass(type="password",id="playerPass",name="playerPass",o-validate="req passauth",maxlength="20",ng-model="registration.playerPass")
+  +b.error.__error(ng-repeat="(errorSrc,errorText) in errors")
+    i.fa.fa-exclamation-triangle
+    +e.SPAN.message {{errorText}}
+  +b.group_left-empty.__group
+    +e.right
+      +e.BUTTON.button(ng-disabled="!validated.$all")
+        i.fa.fa-spinner.fa-spin.ng-hide(ng-show="validated.$submitted")
+        span Отправить

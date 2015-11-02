@@ -1,0 +1,14 @@
+include ../bemto/bemto
+mixin validol(isElement,name)
+  if isElement
+    +e()(ng-class!="!validated.#{name}.$pristine && (validated.#{name}.$all===false && 'error'||validated.#{name}.$all===true && 'success')")&attributes(attributes)
+      block
+  else
+    +b()(ng-class!="!validated.#{name}.$pristine && (validated.#{name}.$all===false && 'error'||validated.#{name}.$all===true && 'success')")&attributes(attributes)
+      block
+mixin e-validol(name)
+  +validol(true,name)&attributes(attributes)
+    block
+mixin b-validol(name)
+  +validol(false,name)&attributes(attributes)
+    block

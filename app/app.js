@@ -1,10 +1,12 @@
+/*
+global angular
+*/
 'use strict';
 
 // Declare app level module which depends on views, and components
 angular.module('Scrummer', [
     'ngRoute',
     'Scrummer.Login',
-    "Scrummer.Round",
     'OUtils'
 ]).
 config(['$routeProvider', function($routeProvider) {
