@@ -19,6 +19,6 @@ link(rel="stylesheet",href="Login/view.css")
     +e.SPAN.message {{errorText}}
   +b.group_left-empty.__group
     +e.right
-      +e.BUTTON.button(ng-disabled="!validated.$all")
+      +e.button(type='submit',ng-disabled="!validated.$all")
         i.fa.fa-spinner.fa-spin.ng-hide(ng-show="validated.$submitted")
         span Отправить
