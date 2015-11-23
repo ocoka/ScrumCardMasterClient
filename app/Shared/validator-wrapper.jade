@@ -1,14 +1,13 @@
 include ../bemto/bemto
-mixin validol(isElement,name)
+mixin validol(isElement,name,subclass)
   if isElement
-    +e()(ng-class!="!validated.#{name}.$pristine && (validated.#{name}.$all===false && 'error'||validated.#{name}.$all===true && 'success')")&attributes(attributes)
-      block
+    +e()(class="#{subclass}",ng-class!="!validated.#{name}.$pristine && (validated.#{name}.$all===false && 'error'||validated.#{name}.$all===true && 'success')")
+      +e()&attributes(attributes)
   else
-    +b()(ng-class!="!validated.#{name}.$pristine && (validated.#{name}.$all===false && 'error'||validated.#{name}.$all===true && 'success')")&attributes(attributes)
-      block
-mixin e-validol(name)
-  +validol(true,name)&attributes(attributes)
-    block
-mixin b-validol(name)
-  +validol(false,name)&attributes(attributes)
-    block
+    +b()(class="#{subclass}",ng-class!="!validated.#{name}.$pristine && (validated.#{name}.$all===false && 'error'||validated.#{name}.$all===true && 'success')")
+      +e()&attributes(attributes)
+      
+mixin e-validol(name,subclass)
+  +validol(true,name,subclass)&attributes(attributes)
+mixin b-validol(name,subclass)
+  +validol(false,name,subclass)&attributes(attributes)
