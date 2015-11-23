@@ -6,8 +6,7 @@
       <label for="playerName" class="group__label">Введите ваше имя
       </label>
     </div>
-    <div ng-class="!validated.playerName.$pristine && (validated.playerName.$all===false && 'error'||validated.playerName.$all===true && 'success')" class="group__right">
-      <input type="text" id="playerName" name="playerName" o-validate="req username" maxlength="20" ng-model="registration.playerName" class="group__input"/>
+    <div ng-class="!validated.playerName.$pristine && (validated.playerName.$all===false && 'error'||validated.playerName.$all===true && 'success')" class="group__right"><input type="text" id="playerName" name="playerName" o-validate="req username" maxlength="20" ng-model="registration.playerName" class="group__input"/>
     </div>
   </div>
   <div class="form__group group">
@@ -15,8 +14,7 @@
       <label for="playerPass" class="group__label">Введите пароль
       </label>
     </div>
-    <div ng-class="!validated.playerPass.$pristine && (validated.playerPass.$all===false && 'error'||validated.playerPass.$all===true && 'success')" class="group__right">
-      <input type="password" id="playerPass" name="playerPass" o-validate="req passauth" maxlength="20" ng-model="registration.playerPass" class="group__input group__input_pass"/>
+    <div ng-class="!validated.playerPass.$pristine && (validated.playerPass.$all===false && 'error'||validated.playerPass.$all===true && 'success')" class="group__right"><input type="password" id="playerPass" name="playerPass" o-validate="req passauth" maxlength="20" ng-model="registration.playerPass" class="group__input group__input_pass"/>
     </div>
   </div>
   <div ng-repeat="(errorSrc,errorText) in errors" class="error form__error"><i class="fa fa-exclamation-triangle"></i><span class="error__message">{{errorText}}</span>

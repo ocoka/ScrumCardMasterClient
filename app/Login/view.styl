@@ -20,12 +20,6 @@
   width auto
   &__error
     flex 0 1 auto
-  @media screen and (min-width:400px)
-    &_left-empty:before
-      flex 1 1 0
-      content ""
-      display block
-      min-width 12rem
   &__right
     flex 1 1 0
     display  flex
@@ -39,9 +33,6 @@
   &__left
     @extend .group__right
     align-items flex-end
-  @media screen and (max-width:400px)
-    &__right,&_left
-      align-items center
   &__input
     font-size  1.2rem
     background-color  black
@@ -56,6 +47,7 @@
       box-shadow #1E901E 0 0 4px 1px
     /.error>&,/.error&
       box-shadow #BB1E1E 0 0 4px 1px
+      color #A05151
 
   &__button
     box-shadow inset 0px 1px 0px 0px #a6827e
@@ -89,3 +81,14 @@
   text-align center
   &__message
     font-weight 600
+@media screen and (min-width:400px)
+  .group
+    &_left-empty:before
+      flex 1 1 0
+      content ""
+      display block
+      min-width 12rem
+@media screen and (max-width:400px)
+  .group
+    &__right,&__left
+      align-items center

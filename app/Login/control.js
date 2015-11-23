@@ -1,7 +1,7 @@
 /*global angular*/
 
 'use strict';
-angular.module('Scrummer.Login', ['ngRoute'])
+angular.module('Scrummer.Login', ['ngRoute','OUtils'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {
     templateUrl: 'Login/view.html',

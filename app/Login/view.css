@@ -20,14 +20,6 @@
 .group__error {
   flex: 0 1 auto;
 }
-@media screen and (min-width: 400px) {
-  .group_left-empty:before {
-    flex: 1 1 0;
-    content: "";
-    display: block;
-    min-width: 12rem;
-  }
-}
 .group__right,
 .group__left {
   flex: 1 1 0;
@@ -43,13 +35,6 @@
 }
 .group__left {
   align-items: flex-end;
-}
-@media screen and (max-width: 400px) {
-  .group__right,
-  .group_left,
-  .group__left {
-    align-items: center;
-  }
 }
 .group__input {
   font-size: 1.2rem;
@@ -69,6 +54,7 @@
 .error>.group__input,
 .error.group__input {
   box-shadow: #bb1e1e 0 0 4px 1px;
+  color: #a05151;
 }
 .group__button {
   box-shadow: inset 0px 1px 0px 0px #a6827e;
@@ -108,4 +94,18 @@
 }
 .error__message {
   font-weight: 600;
+}
+@media screen and (min-width: 400px) {
+  .group_left-empty:before {
+    flex: 1 1 0;
+    content: "";
+    display: block;
+    min-width: 12rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .group__right,
+  .group__left {
+    align-items: center;
+  }
 }
