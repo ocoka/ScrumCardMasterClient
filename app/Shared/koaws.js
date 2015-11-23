@@ -12,7 +12,7 @@
         }
 
         this.session = socket.session;
-    };
+    }
 
     Request.prototype.error = function (code, message) {
         try {
@@ -125,7 +125,7 @@
             request.error(-32601, 'Method not found');
         }
 
-    };
+    }
 
     if (typeof WebSocket === 'undefined') {
         throw Error("Your browser doesn't support websocket, go away !!!");
@@ -170,6 +170,10 @@
         });
     }
 
+    Client.prototype.onError = function (type,e) {
+      debug('WebSocket error');
+    }
+
 
     Client.prototype.onOpen = function (type,e) {
         debug('WebSocket opened');
@@ -208,7 +212,7 @@
         this.socket = new WebSocket('ws://' + address);
 
         // Add helper handlers for the folowing events
-        ['open', 'close', 'message']
+        ['open', 'close', 'message','error']
             .forEach(function (type, i) {
                 var handler = function (e) {
                     (this["on"+type[0].toUpperCase()+type.substr(1)]).apply(this, [type].concat(Array.prototype.slice.call(arguments)));
