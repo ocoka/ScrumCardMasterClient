@@ -112,9 +112,23 @@ body a:hover {
   height:100%;
   width:100%;
 }
+.shutter {
+  height:100%;
+  width:100%;
+  position: absolute;
+  top:0;
+  left:0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+}
 
 .shutter__message {
     color:white;
+    flex:0 0 auto;
 }
 .shutter__message_error{
     color:#E44141;
@@ -140,6 +154,7 @@ body a:hover {
     transform-style: preserve-3d;
     height: 128px;
     backface-visibility: visible;
+    width:96px;
 }
 .card:before {
     content:"";
