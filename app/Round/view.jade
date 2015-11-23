@@ -1,0 +1,14 @@
+//output:view.html
+include ../bemto/bemto
+include ../Shared/validator-wrapper
+
+link(rel="stylesheet",href="Round/view.css")
+
++b.round
+  +b.topic.__top
+  +b.players.__bottom
+    +b.player.__item(ng-repeat="(playerName,playerRole) in registeredPlayers")
+      +e.info(ng-class="'player__info_'+playerRole")
+        +e.SPAN.name(ng-bind="playerName")
+      +b.card.__card
+        +e.front 10

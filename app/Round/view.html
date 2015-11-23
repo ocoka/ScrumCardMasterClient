@@ -1,0 +1,16 @@
+
+<link rel="stylesheet" href="Round/view.css"/>
+<div class="round">
+  <div class="round__top topic">
+  </div>
+  <div class="players round__bottom">
+    <div ng-repeat="(playerName,playerRole) in registeredPlayers" class="player players__item">
+      <div ng-class="'player__info_'+playerRole" class="player__info"><span ng-bind="playerName" class="player__name"></span>
+      </div>
+      <div class="card player__card">
+        <div class="card__front">10
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
