@@ -5,7 +5,15 @@ include ../Shared/validator-wrapper
 link(rel="stylesheet",href="Round/view.css")
 
 +b.round
-  +b.topic.__top
+  +b.topics.__top
+    -var i=1
+    while i<10
+      +b.topic.__item
+        +e.subject
+          +e.SPAN.name  Subject #{i++}
+          +e.SPAN.points 13
+        +e.body.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.      
   +b.players.__bottom
     +b.player.__item(ng-repeat="(playerName,playerRole) in registeredPlayers")
       +e.info(ng-class="'player__info_'+playerRole")

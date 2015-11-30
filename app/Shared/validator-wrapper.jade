@@ -2,10 +2,10 @@ include ../bemto/bemto
 mixin validol(isElement,name,subclass)
   if isElement
     +e()(class="#{subclass}",ng-class!="!validated.#{name}.$pristine && (validated.#{name}.$all===false && 'error'||validated.#{name}.$all===true && 'success')")
-      +e()&attributes(attributes)
+      +e()(id="#{name}",name="#{name}")&attributes(attributes)
   else
     +b()(class="#{subclass}",ng-class!="!validated.#{name}.$pristine && (validated.#{name}.$all===false && 'error'||validated.#{name}.$all===true && 'success')")
-      +e()&attributes(attributes)
+      +e()(id="#{name}",name="#{name}")&attributes(attributes)
       
 mixin e-validol(name,subclass)
   +validol(true,name,subclass)&attributes(attributes)

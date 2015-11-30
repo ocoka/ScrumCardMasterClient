@@ -9,11 +9,11 @@ link(rel="stylesheet",href="Login/view.css")
   +b.group.__group
     +e.left
       +e.label(for='playerName') #{playerName}
-    +e-validol('playerName','right').input(type="text",id="playerName",name="playerName",o-validate="req username",maxlength="20",ng-model="registration.playerName")
+    +e-validol('playerName','right').INPUT.input(type="text",o-validate="req username",maxlength="20",ng-model="registration.playerName")
   +b.group.__group
     +e.left
       +e.label(for='playerPass') #{playerPass}
-    +e-validol('playerPass','right').input_pass(type="password",id="playerPass",name="playerPass",o-validate="req passauth",maxlength="20",ng-model="registration.playerPass")
+    +e-validol('playerPass','right').INPUT.input_pass(type="password",o-validate="req passauth",maxlength="20",ng-model="registration.playerPass")
   +b.error.__error(ng-repeat="(errorSrc,errorText) in errors")
     i.fa.fa-exclamation-triangle
     +e.SPAN.message {{errorText}}

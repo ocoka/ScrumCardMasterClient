@@ -3,17 +3,27 @@
 .round
   display flex
   flex-flow row wrap
-  justify-content space-between
+  justify-content space-around
   align-items flex-start
   align-content flex-start
   width 100%
   height 100%
+  padding 15px
   &__top
-    flex 1 1 360px
-    min-width 360px
+    flex 1 1 300px
+    max-height 100%
+    overflow-x hidden
+    overflow-y auto
   &__bottom
     @extend .round__top
-
+.topic
+  padding 0 0 2rem 0
+  &__subject
+    font normal normal 800 2rem/1 "Exo 2"
+  &__points
+    float right
+    color grey
+    padding 0 20px 0 0
 .players
   display flex
   flex-flow row wrap
@@ -24,11 +34,14 @@
     flex 0 0 auto
 
 .player
+  padding 1rem 0.5rem
   &__info
+    margin 0 0 1.5rem 0
     &::before
       font normal normal normal 100%/1 FontAwesome
       font-size inherit
       display inline
+      padding 0 0.5rem 0 0
     &_simple
       &::before
         content "\f007"
